@@ -66,9 +66,7 @@ public class Main {
             String[] splitLine = scannedLine.split(";");
             for (int j = 0; j < splitLine.length; j++) {
                 String[] splitPhrase = splitLine[j].split("=");
-                String itemName = splitPhrase[0];
-                double itemPrice = Double.parseDouble(splitPhrase[1]);
-                store.setItem(i, j, new Item(itemName, itemPrice)); 
+                store.setItem(i, j, new Item(splitPhrase[0], Double.parseDouble(splitPhrase[1]))); 
             }
         }
         
