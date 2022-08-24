@@ -19,8 +19,7 @@ public class Main {
         } catch (FileNotFoundException e) {
             e.getMessage();
         } finally {
-            System.out.println("\n\t******************************JAVA GROCERS******************************\n");
-            System.out.println(store);
+            manageItems();
         }
         
         
@@ -39,6 +38,48 @@ public class Main {
      *   •        Prints the updated shopping cart.
      */
  
+    static public void manageItems(){
+        Scanner scan = new Scanner (System.in);
+        while (true){
+            System.out.println("\n\t******************************JAVA GROCERS******************************\n");
+
+            System.out.println(store);
+
+            System.out.println("Options: \n\ta) Add to cart\n\tb) Remove from cart \n\tc) Checkout");
+
+            String answer = scan.nextLine();
+
+            if (answer.equals("a")){
+                System.out.print("\nChoose an aisle number between: 1 - 7: ");
+                int aisle = scan.nextInt() - 1;
+                scan.nextLine(); //To avoid skipping errors when calling nextLine() after nextInt()
+                
+                System.out.print("Choose an item number between: 1 - 3: ");
+                int row = scan.nextInt() - 1;
+                scan.nextLine(); //To avoid skipping errors when calling nextLine() after nextInt()
+
+                Item itemToAdd = new Item(store.getItem(aisle, row));
+
+                if (cart.add(itemToAdd)){
+                    System.out.println(itemToAdd.getName() + " was added to your shopping cart.");
+                } else {
+                    System.out.println(itemToAdd.getName() + " is already in your shopping cart.");
+                }
+
+            } else if (answer.equals("b")){
+                
+            } else if (answer.equals("c")){
+                
+            } else {
+                break;
+            }
+
+
+            System.out.println(cart);
+        
+        }
+        scan.close();
+    }
 
     /**
      * Name: loadItems
