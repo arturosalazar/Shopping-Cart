@@ -67,15 +67,18 @@ public class Main {
                 }
 
             } else if (answer.equals("b")){
-                
+                System.out.print("Enter the item you'd like to remove: ");
+                String toRemove = scan.nextLine();
+                cart.remove(toRemove);
             } else if (answer.equals("c")){
-                
-            } else {
+                System.out.println(cart.checkout());
                 break;
-            }
+            } 
 
 
-            System.out.println(cart);
+            System.out.println("\n\nSHOPPING CART\n\n" + cart);
+            System.out.print("Enter anything to continue: ");
+            scan.nextLine();
         
         }
         scan.close();
