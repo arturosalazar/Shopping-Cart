@@ -95,7 +95,7 @@ public class Cart {
     public String toString() {
         String temp = "";
         for (int i = 0; i < items.size(); i++) {
-            temp += items.get(i).toString();
+            temp += items.get(i).toString() + "\n";
         }
         return temp;
     }
