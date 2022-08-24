@@ -49,17 +49,27 @@ public class Main {
 
             String answer = scan.nextLine();
 
+            
+
             if (answer.equals("a")){
-                System.out.print("\nChoose an aisle number between: 1 - 7: ");
-                int aisle = scan.nextInt() - 1;
+                System.out.print("\nChoose an aisle number between: 1 - 7: ");                
+                int aisle = scan.hasNextInt() ? scan.nextInt() - 1 : 404;
                 scan.nextLine(); //To avoid skipping errors when calling nextLine() after nextInt()
                 
                 System.out.print("Choose an item number between: 1 - 3: ");
-                int row = scan.nextInt() - 1;
+                int row = scan.hasNextInt() ? scan.nextInt() - 1 : 404;
                 scan.nextLine(); //To avoid skipping errors when calling nextLine() after nextInt()
 
-                Item itemToAdd = new Item(store.getItem(aisle, row));
+                //Check for invalid input 
+                if (aisle == 404 || row == 404){
+                    System.out.println("Please enter a valid aisle and row");
+                    continue;
+                }
+                if (aisle < 1 || aisle > 7 || row < 1 || row > 3){
+                    System.out.println("Please enter a valid aisle and row");
+                }
 
+                Item itemToAdd = new Item(store.getItem(aisle, row));
                 if (cart.add(itemToAdd)){
                     System.out.println(itemToAdd.getName() + " was added to your shopping cart.");
                 } else {
@@ -67,6 +77,10 @@ public class Main {
                 }
 
             } else if (answer.equals("b")){
+                if (cart.isEmpty()){
+                    System.out.println("You cannot remove items from an empty cart");
+                    continue;
+                }
                 System.out.print("Enter the item you'd like to remove: ");
                 String toRemove = scan.nextLine();
                 cart.remove(toRemove);
